@@ -1,3 +1,4 @@
+
 # 1. Reserved Static IP Addresses
 resource "google_compute_address" "static_ips" {
   count = 3
@@ -34,12 +35,15 @@ resource "google_compute_instance" "debian_nodes" {
     network = "ubuntu-vpc"
     subnetwork = "private-subnet"
 
-    access_config {
+    #access_config {
       # Assigning the reserved static IP
-      nat_ip = google_compute_address.static_ips[count.index].address
-    }
+     # nat_ip = google_compute_address.static_ips[count.index].address
+    #}
   }
 
+# Reference the external shell script
+  metadata_startup_script = var.script
+  
   # Ensures disks are attached correctly during creation
   lifecycle {
     ignore_changes = [attached_disk]

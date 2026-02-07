@@ -34,6 +34,13 @@ variable "ubuntu_image" {
   type        = string
   default     = "ubuntu-os-cloud/ubuntu-2204-lts"
 }
+variable "script" {
+  description = "For startup script"
+  type        = string
+  //default     = null
+  default     = file("${path.module}/install_xfce.sh"
+}
+
 /*
 variable "ssh_user" {
   description = "The username for SSH access"
