@@ -32,6 +32,7 @@ resource "google_compute_instance" "debian_nodes" {
 
   network_interface {
     network = "ubuntu-vpc"
+    subnetwork = "private-subnet"
 
     access_config {
       # Assigning the reserved static IP
