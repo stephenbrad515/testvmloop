@@ -42,7 +42,7 @@ resource "google_compute_instance" "debian_nodes" {
   }
 
 # Reference the external shell script
-  metadata_startup_script = var.script
+  metadata_startup_script = file(${path.module}/var.script)
   
   # Ensures disks are attached correctly during creation
   lifecycle {

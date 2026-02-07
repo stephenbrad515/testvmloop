@@ -38,7 +38,7 @@ variable "script" {
   description = "For startup script"
   type        = string
   //default     = null
-  default     = file("${path.module}/install_xfce.sh"
+  default     = "install_xfce.sh"
 }
 
 /*
