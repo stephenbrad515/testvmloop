@@ -1,4 +1,4 @@
-
+/*
 # 1. Reserved Static IP Addresses
 resource "google_compute_address" "lxqt_static_ips" {
   count = 3
@@ -42,7 +42,7 @@ resource "google_compute_instance" "lxqt_debian_nodes" {
   }
 
 # Reference the external shell script
-  metadata_startup_script = file("${path.module}/install_lxqt.sh")
+  metadata_startup_script = file("${path.module}/install_lxqt_2.sh")
 
 
   # Ensures disks are attached correctly during creation
@@ -50,3 +50,4 @@ resource "google_compute_instance" "lxqt_debian_nodes" {
     ignore_changes = [attached_disk]
   }
 }
+*/
