@@ -2,13 +2,13 @@
 # 1. Reserved Static IP Addresses
 resource "google_compute_address" "static_ips" {
   count = 3
-  name  = "debian-static-ip-${count.index}"
+  name  = "lxqt-static-ip-${count.index}"
 }
 
 # 2. Additional Data Disks
 resource "google_compute_disk" "data_disks" {
   count = 3
-  name  = "debian-data-disk-${count.index}"
+  name  = "lxqt-data-disk-${count.index}"
   type  = "pd-standard"
   size  = 20
 }
@@ -16,7 +16,7 @@ resource "google_compute_disk" "data_disks" {
 # 3. VM Instances Loop
 resource "google_compute_instance" "debian_nodes" {
   count        = 3
-  name         = "debian-vm-${count.index}"
+  name         = "lxqt-vm-${count.index}"
   machine_type = "e2-medium"
 
   boot_disk {
@@ -42,8 +42,9 @@ resource "google_compute_instance" "debian_nodes" {
   }
 
 # Reference the external shell script
-  metadata_startup_script = var.startup_script
-  
+  metadata_startup_script = file("${path.module}/install_lxqt.sh")
+
+
   # Ensures disks are attached correctly during creation
   lifecycle {
     ignore_changes = [attached_disk]
